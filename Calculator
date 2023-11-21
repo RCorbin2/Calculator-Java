@@ -1,0 +1,303 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class Calculator extends JFrame implements ActionListener{
+	//variables
+	private double x = 0 , y = 0, result = 0;
+	private int mode = 0;
+	private JTextField txt;
+	private String divZ = "";
+	private boolean c = false;
+	
+	//button variables
+	private JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, periodB, addB, subB, multB, divB, modB, clearB, equalB;
+	
+
+	public Calculator(){
+		//name of frame
+		super("Calculator");
+		
+		//create text field
+		txt = new JTextField();
+		
+		//created buttons
+		b0 = new JButton("0");
+		b1 = new JButton("1");
+		b2 = new JButton("2");
+		b3 = new JButton("3");
+		b4 = new JButton("4");
+		b5 = new JButton("5");
+		b6 = new JButton("6");
+		b7 = new JButton("7");
+		b8 = new JButton("8");
+		b9 = new JButton("9");
+		periodB = new JButton(".");
+		addB = new JButton("+");
+		subB = new JButton("-");
+		multB = new JButton("*");
+		divB = new JButton("/");
+		modB = new JButton("%");
+		clearB = new JButton("CLR");
+		equalB = new JButton("=");
+		
+		
+		//set area for text, alignment to right in txt box, set not editable, set background/caret white, set text to empty, and font size 20 
+		txt.setBounds(40,20,300,30);
+		txt.setHorizontalAlignment(JTextField.RIGHT);
+		txt.setEditable(false);
+		txt.setBackground(Color.WHITE);
+		txt.setCaretColor(Color.WHITE);
+		txt.setText("");
+		txt.setFont(txt.getFont().deriveFont(20f));
+
+		//first row: clear and mod button locations
+		clearB.setBounds(280, 80 , 60 , 50);
+		modB.setBounds(205, 80, 60, 50);
+		
+		//second row: +, 9, 8, 7 button locations
+		addB.setBounds(280, 145, 60, 50);
+		b9.setBounds(205, 145, 60, 50);
+		b8.setBounds(130, 145, 60, 50);
+		b7.setBounds(55, 145, 60, 50);
+		
+		//third row: -, 6, 5, 4 button locations
+		subB.setBounds(280, 210, 60, 50);
+		b6.setBounds(205, 210, 60, 50);
+		b5.setBounds(130, 210, 60, 50);
+		b4.setBounds(55, 210, 60, 50);
+		
+		//fourth row: *, 3, 2, 1 button locations
+		multB.setBounds(280, 275, 60, 50);
+		b3.setBounds(205, 275, 60, 50);
+		b2.setBounds(130, 275, 60, 50);
+		b1.setBounds(55, 275, 60, 50);
+		
+		//fifth row: =, /, 0, . button locations
+		equalB.setBounds(280, 340, 60, 50);
+		divB.setBounds(205, 340, 60, 50);
+		b0.setBounds(130, 340, 60, 50);
+		periodB.setBounds(55, 340, 60, 50);
+		
+		//add buttons and text field to frame
+		add(txt);
+		add(clearB);
+		add(modB);
+		add(addB);
+		add(b9);
+		add(b8);
+		add(b7);
+		add(subB);
+		add(b6);
+		add(b5);
+		add(b4);
+		add(multB);
+		add(b3);
+		add(b2);
+		add(b1);
+		add(equalB);
+		add(divB);
+		add(b0);
+		add(periodB);
+		
+		//assign action listeners to buttons
+		clearB.addActionListener(this);
+		modB.addActionListener(this);
+		addB.addActionListener(this);
+		b9.addActionListener(this);
+		b8.addActionListener(this);
+		b7.addActionListener(this);
+		subB.addActionListener(this);
+		b6.addActionListener(this);
+		b5.addActionListener(this);
+		b4.addActionListener(this);
+		multB.addActionListener(this);
+		b3.addActionListener(this);
+		b2.addActionListener(this);
+		b1.addActionListener(this);
+		equalB.addActionListener(this);
+		divB.addActionListener(this);
+		b0.addActionListener(this);
+		periodB.addActionListener(this);
+		
+		//set layout to null for positioning buttons, set size of frame, set visible, exit program on close of frame, set so size of frame will not change 
+		setLayout(null);
+		setSize(400,450);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		
+	}
+
+
+	//set event to listen for
+	public void actionPerformed(ActionEvent click){
+		
+      try{
+			//set text field to empty text in field and if clear value is set to true
+			if(txt.getText().equals("Cant divide by zero") || c == true){
+				txt.setText("");
+				c = false;
+			}
+			
+			//clear button action
+			if(click.getSource()== clearB){
+				txt.setText("");
+				this.x = 0;
+				this.y = 0;
+			}
+			
+			//mod button action , set x value
+			else if(click.getSource()== modB){
+				x = Double.valueOf(txt.getText());
+				txt.setText("");
+				mode = 1;
+			}
+			
+			//add button action , set x value
+			else if(click.getSource()== addB){
+				x = Double.valueOf(txt.getText());
+				txt.setText("");
+				mode = 2;
+			}
+			
+			//9 button action
+			else if(click.getSource()== b9){
+				txt.setText(txt.getText() + "9");
+			}
+			
+			//8 button action
+			else if(click.getSource()== b8){
+				txt.setText(txt.getText() + "8");
+			}
+			
+			//7 button action
+			else if(click.getSource()== b7){
+				txt.setText(txt.getText() + "7");
+			}
+			
+			//- button action, set x value
+			else if(click.getSource()== subB){
+				x = Double.valueOf(txt.getText());
+				txt.setText("");
+				mode = 3;
+			}
+			
+			//6 button action
+			else if(click.getSource()== b6){
+				txt.setText(txt.getText() + "6");
+			}
+			
+			//5 button action
+			else if(click.getSource()== b5){
+				txt.setText(txt.getText() + "5");
+			}
+			
+			//4 button action
+			else if(click.getSource()== b4){
+				txt.setText(txt.getText() + "4");
+			}
+			
+			//* button action, set x value
+			else if(click.getSource()== multB){
+				x = Double.valueOf(txt.getText());
+				txt.setText("");
+				mode = 4;
+			}
+			
+			//3 button action
+			else if(click.getSource()== b3){
+				txt.setText(txt.getText() + "3");
+			}
+			
+			//2 button action
+			else if(click.getSource()== b2){
+				txt.setText(txt.getText() + "2");
+			}
+			
+			//1 button action
+			else if(click.getSource()== b1){
+				txt.setText(txt.getText() + "1");
+			}
+			
+			//equal button actions depending on mode set to return result , set y value
+			else if(click.getSource()== equalB){
+				y = Double.valueOf(txt.getText());
+			
+				
+				if(mode == 1){
+					result = (x % y);
+				}
+				else if(mode == 2){
+					result = (x + y);
+				}
+				else if(mode == 3){
+					result = (x - y);
+				}
+				else if(mode == 4){
+					result = (x * y);
+				}
+				else if(mode == 5){
+          //if y value is 0 set divZ
+					if(this.y == 0 || this.y == 0.0){
+						 divZ = "Cant divide by zero";
+					}
+				else
+					result = (x / y);
+				}
+				
+				//if divZ set, display error msg in text field
+				if(divZ.equals("Cant divide by zero")){
+					System.out.println("cant divide by zero" + " value x: " + x + "   value y: " + y); //output turn in
+					txt.setText("Cant divide by zero");
+					this.mode = 0;
+					divZ = "";
+					x = 0;
+					y = 0;
+					c = false;
+				}
+				//display result in text field
+				else{
+					System.out.println("value x: " + x + "   value y: " + y + "     result: " + result); //output turn in
+					txt.setText(Double.toString(result));
+					this.mode = 0;
+					this.x = 0;
+					this.y = 0;
+					c = true;
+				}
+			}
+			
+			/// button action, set x value
+			else if(click.getSource()== divB){
+				x = Double.valueOf(txt.getText());
+				txt.setText("");
+				mode = 5;
+			}
+			
+			//0 button action
+			else if(click.getSource()== b0){
+			txt.setText(txt.getText() + "0");
+			}
+			
+			//period button action
+			else if(click.getSource()== periodB){
+				
+        if(txt.getText().equals("")){
+					txt.setText(txt.getText() +"0.");
+				}
+				else
+					txt.setText(txt.getText() + ".");
+			}
+		
+		}
+		catch(NumberFormatException n){
+			txt.setText("");
+		}
+		
+		
+		
+	}
+	
+}
