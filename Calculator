@@ -135,7 +135,7 @@ public class Calculator extends JFrame implements ActionListener{
 	//set event to listen for
 	public void actionPerformed(ActionEvent click){
 		
-      try{
+     		 try{
 			//set text field to empty text in field and if clear value is set to true
 			if(txt.getText().equals("Cant divide by zero") || c == true){
 				txt.setText("");
@@ -240,7 +240,7 @@ public class Calculator extends JFrame implements ActionListener{
 					result = (x * y);
 				}
 				else if(mode == 5){
-          //if y value is 0 set divZ
+         			       //if y value is 0 set divZ
 					if(this.y == 0 || this.y == 0.0){
 						 divZ = "Cant divide by zero";
 					}
@@ -284,11 +284,11 @@ public class Calculator extends JFrame implements ActionListener{
 			//period button action
 			else if(click.getSource()== periodB){
 				
-        if(txt.getText().equals("")){
-					txt.setText(txt.getText() +"0.");
-				}
-				else
-					txt.setText(txt.getText() + ".");
+      		       if(txt.getText().equals("")){
+			  txt.setText(txt.getText() +"0.");
+			}
+			else
+			  txt.setText(txt.getText() + ".");
 			}
 		
 		}
